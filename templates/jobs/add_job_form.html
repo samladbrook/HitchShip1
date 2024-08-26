@@ -1,0 +1,6 @@
+{% load crispy_forms_tags %}
+<form method="post" action="{% url 'add_job' %}">
+    {% csrf_token %}
+    {% crispy form %}
+    <button type="submit" class="btn">Make Changes</button>
+</form>

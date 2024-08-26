@@ -3,16 +3,46 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-{% if user.is_authenticated %}
-<p>Hi {{ user.username }}!</p>
-<p><a href="{% url 'password_change' %}">Password Change</a></p>
-<form action="{% url 'logout' %}" method="post">
-  {% csrf_token %}
-  <button type="submit">Log Out</button>
-</form>
-{% else %}
-<p>You are not logged in</p>
-<p><a href="{% url 'password_reset' %}">Password Reset</a></p>
-<p><a href="{% url 'login' %}">Log In</a></p>
-{% endif %}
-{% endblock %}
+<div class="top-bar">
+    <a class="top-bar-item" href="{% url 'home' %}">Home</a>
+    {% if user.is_authenticated %}
+        <a class="top-bar-item" id="add-job-btn" href="{% url 'add_job' %}">Add Job</a>
+    {% endif %}
+</div>
+
+<div class="main-container">
+    {% if user.is_authenticated %}
+        <div class="welcome-box">
+            <h2>Your Jobs</h2>
+        </div>
+        <div class="jobs-container">
+            {% for job in jobs %}
+                <div class="job-card">
+                    <h3>{{ job.item_name }}</h3>
+                    <p><strong>Pickup Location:</strong> {{ job.pickup_location }}</p>
+                    <p><strong>Destination:</strong> {{ job.destination }}</p>
+                    <p><strong>Quantity:</strong> {{ job.quantity }}</p>
+                    <p><strong>Total Weight:</strong> {{ job.total_weight }} kg</p>
+                    <p><strong>Date Added:</strong> {{ job.date_added|date:"Y-m-d" }}</p>
+                    <p><strong>Status:</strong> {{ job.get_status_display }}</p>
+                    <div class="job-actions">
+                        <a href="#" class="btn edit-btn" onclick="openPopup('{{ job.id }}')">Edit</a>
+                        <form action="{% url 'delete_job' job.id %}" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button class="btn delete-btn" type="submit">&#128465;</button> <!-- Trash icon -->
+                        </form>
+                    </div>
+                </div>
+            {% empty %}
+                <p>No jobs added yet.</p>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="welcome-box">
+            <p>You are not logged in</p>
+            <p><a class="btn" href="{% url 'login' %}">Log In</a></p>
+        </div>
+    {% endif %}
+    {% endblock %}
+</div>
+

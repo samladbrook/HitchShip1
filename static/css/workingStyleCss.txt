@@ -1,0 +1,108 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #2c3e50; /* Dark background color */
+    color: #ecf0f1; /* Light text color */
+    margin: 0;
+    padding: 0;
+}
+
+.top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    background-color: #34495e;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    height: 50px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.top-bar-item {
+    color: #ecf0f1;
+    text-decoration: none;
+    font-size: 1em;
+    margin-right: 20px;
+}
+
+.logout-form {
+    margin: 0;
+    display: flex;
+}
+
+.welcome-box {
+    width: 70%;
+    margin: 50px auto; /* Center container */
+    padding: 20px;
+    text-align: center;
+    background-color: #34495e;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding-top: 60px; /* Adjust based on the height of the top bar */
+    width: 70%;
+    margin: 0 auto; /* Center horizontally */
+}
+
+.job-box {
+    background-color: #2c3e50;
+    padding: 15px;
+    border-radius: 8px;
+    color: #ecf0f1;
+    width: calc(50% - 20px); /* Ensure two items per row with gap considered */
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.jobs-heading {
+    color: #ecf0f1;
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.job-box h3 {
+    margin-top: 0;
+}
+
+.job-box p {
+    margin: 5px 0;
+}
+
+.job-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.edit-btn {
+    background-color: #1abc9c; /* Teal color for edit button */
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.delete-btn {
+    background-color: #e74c3c; /* Red color for delete button */
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.job-action:hover {
+    color: #e74c3c;
+}

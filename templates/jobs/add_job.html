@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Add Job{% endblock %}
+
+{% block content %}
+<div class="container">
+    <a href="{% url 'home' %}" class="btn back-btn">
+        <i class="fas fa-arrow-left"></i> <!-- Font Awesome back arrow icon -->
+    </a>
+    <div class="form-container">
+        <h2>Add New Job</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="starting-point">Starting Point</label>
+                {{ form.pickup_location }}
+                <ul id="starting-point-results"></ul> <!-- Dropdown for suggestions -->
+            </div>
+            <div class="form-group">
+                <label for="destination">Destination</label>
+                {{ form.destination }}
+                <ul id="destination-results"></ul> <!-- Dropdown for suggestions -->
+            </div>
+            {{ form.item_name.label_tag }} {{ form.item_name }}
+            {{ form.quantity.label_tag }} {{ form.quantity }}
+            {{ form.total_weight.label_tag }} {{ form.total_weight }}
+            {{ form.SKU.label_tag }} {{ form.SKU }}
+            {{ form.description.label_tag }} {{ form.description }}
+            <button class="btn submit-btn" type="submit">Add Job</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

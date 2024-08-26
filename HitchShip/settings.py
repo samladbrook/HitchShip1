@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-v1q#y6nyez=tbugov+j_gx95d#)vdnksm3+yz-9r-&nlv^&nn(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "accounts",
+    "jobs",
 ]
 
 MIDDLEWARE = [
@@ -90,14 +91,20 @@ DATABASES = {
 }
 """
 
-env = environ.Env()
-environ.Env.read_env()
+#env = environ.Env()
+#environ.Env.read_env()
 
 
+#DATABASES = {
+
+#    'default': dj_database_url.parse(env('DATABASE_URL'))
+
+#}
 DATABASES = {
-
-    'default': dj_database_url.parse(env('DATABASE_URL'))
-
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / "db.sqlite3",
+    }
 }
 
 
@@ -152,5 +159,4 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 
 STATIC_URL = '/static/'
-
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
